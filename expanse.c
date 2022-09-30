@@ -1,4 +1,4 @@
-#include <stdint.h>
+#include "expanse.h"
 
 void hex_array_print(uint8_t* out_print, char* dec, int out_pirint_len)
 {
@@ -10,3 +10,25 @@ void hex_array_print(uint8_t* out_print, char* dec, int out_pirint_len)
 	printf("\n");
 }
 
+void init_file(char* file_name, uint8_t* str)
+{
+	//uint8_t str[16] = {0x00};
+	char code = 'a';
+	int i = 0;
+
+	FILE* fd = fopen(file_name, "r");
+
+	if(fd == NULL)
+	{
+		printf("Error file open!\n");
+		exit(0);
+	}
+	
+	while((code = fgetc(fd)) != EOF)
+	{
+		str[i++] = code;
+		if(i == 16)break;
+	}
+
+	fclose(fd);
+}

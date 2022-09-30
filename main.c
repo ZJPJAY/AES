@@ -9,7 +9,7 @@
 #include <time.h>
 
 #include "aes.h"
-#include "expanse.c"
+#include "expanse.h"
 
 int main() {
 
@@ -85,11 +85,14 @@ int main() {
 		0x18, 0x19, 0x1a, 0x1b,
 		0x1c, 0x1d, 0x1e, 0x1f}; */
 
-	uint8_t in[] = {
+	/* uint8_t in[] = {
 		0x00, 0x11, 0x22, 0x33,
 		0x44, 0x55, 0x66, 0x77,
 		0x88, 0x99, 0xaa, 0xbb,
-		0xcc, 0xdd, 0xee, 0xff};
+		0xcc, 0xdd, 0xee, 0xff}; */
+
+	uint8_t in[16] = {'\n'};
+	init_file("1.txt", in);
 	
 	uint8_t out[16]; // 128
 
@@ -122,6 +125,8 @@ int main() {
 	printf("##Decode process time:%fsec\n", (double)(e-s)/CLOCKS_PER_SEC);
 	
 	hex_array_print(in, "Original message (after inv cipher):", 4);
+
+//--------------------------结束--------------------------
 
 	free(w);
 	return 0;
